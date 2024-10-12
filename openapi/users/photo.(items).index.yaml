@@ -1,0 +1,79 @@
+put: 
+  security:
+    - bearerAuth: [bearer]
+  operationId: update-user-photo
+  tags:
+    - Users
+  summary: Update User Photo
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          required:
+            - photo
+          properties:
+            photo:
+              type: string
+              format: binary
+              example: Binary Data
+  responses:
+    200:
+      description: User Updated.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - message
+            properties:
+              message:
+                type: string
+                example: User update successfully.
+              
+    401:
+      description: Unauthenticated.
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: Unauthenticated.
+    404:
+      description: User Not Found
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: User not found.
+    422:
+      description: Invalid Input
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              - message
+              - errors
+            properties:
+              message:
+                type: string
+                example: Invalid Input.
+              errors:
+                type: object
+                required: 
+                  - photo
+                properties:
+                  photo:
+                    type: string
+                    example: photo is required

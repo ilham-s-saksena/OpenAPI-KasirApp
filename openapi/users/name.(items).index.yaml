@@ -1,0 +1,78 @@
+put: 
+  security:
+    - bearerAuth: [bearer]
+  operationId: update-user-name
+  tags:
+    - Users
+  summary: Update User Name
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              example: ilham sidik s
+  responses:
+    200:
+      description: User Updated.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - message
+            properties:
+              message:
+                type: string
+                example: User update successfully.
+              
+    401:
+      description: Unauthenticated.
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: Unauthenticated.
+    404:
+      description: User Not Found
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: User not found.
+    422:
+      description: Invalid Input
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              - message
+              - errors
+            properties:
+              message:
+                type: string
+                example: Invalid Input.
+              errors:
+                type: object
+                required: 
+                  - name
+                properties:
+                  name:
+                    type: string
+                    example: name is required

@@ -1,0 +1,51 @@
+get:
+  security:
+    - bearerAuth: [bearer]
+  operationId: get-self-company
+  tags:
+    - Company
+  summary: Get Self Company
+
+          
+  responses:
+    200:
+      description: Company Shown.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - name
+              - photo
+            properties:
+              name:
+                type: string
+                example: Klinik Pratama Watumas
+              photo:
+                type: string
+                format: url
+                example: https://klinikwatumas.com/logo
+    401:
+      description: Unauthenticated.
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: Unauthenticated.
+    404:
+      description: Company Not Found
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: Company not found.

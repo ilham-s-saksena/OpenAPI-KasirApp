@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: KasirAPI
+  termsOfService: null
+  contact:
+    email: ilhamsidiksaksena@gmail.com
+    url: https://
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  x-logo:
+    url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqZ4zUJYtla6UURcmT91UEB0_s0JOXsPWFrUjBloBEVA&s
+  description: This is OpenAPI for KasirApp
+servers:
+  - url: https://kasir-app.e-ticketing.id
+tags:
+  - name: Auth
+    description: API For Login Users.
+paths:
+  login:
+    $ref: src/auth/login.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

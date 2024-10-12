@@ -1,0 +1,54 @@
+get:
+  security:
+    - bearerAuth: [bearer]
+  operationId: get-self-information
+  tags:
+    - Users
+  summary: Get Self Information
+  responses:
+    200:
+      description: User Information Shown.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - name
+              - email
+              - photo
+            properties:
+              name:
+                type: string
+                example: Ilham Sidik Saksena.
+              email:
+                type: string
+                format: email
+                example: ilhamsidiksaksena@gmail.com
+              photo:
+                type: string
+                format: url
+                example: https://klinikwatumas.com/user/uigxa8-sdgao-sajsfdb
+    401:
+      description: Unauthenticated.
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: Unauthenticated.
+    404:
+      description: User Not Found
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: User not found.

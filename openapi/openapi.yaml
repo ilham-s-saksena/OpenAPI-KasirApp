@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Portofolio API
+  termsOfService: https://example.com/terms/
+  contact:
+    email: ilhamsidiksaksena@gmail.com
+    url: https://
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  x-logo:
+    url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqZ4zUJYtla6UURcmT91UEB0_s0JOXsPWFrUjBloBEVA&s
+  description: >
+    This is an **Api documentation** from website https://ontheklik.my.id to create landing page of anyone portofolio.
+
+    # Introduction
+
+    This is the api documentation that I created for the first time
+tags:
+  - name: Auth
+    description: API For Login Users.
+
+servers:  
+  - url: https://klinikwatumas.com/apis
+paths:
+  /login:
+    $ref: src/auth/login.yaml
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

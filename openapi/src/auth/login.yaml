@@ -1,0 +1,63 @@
+post:
+  security: []
+  operationId: login
+  tags: 
+    - Auth
+  summary: Login
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: _schema.yaml#/login-api/reqBody
+        example:
+          email: ilhamsidik@gmail.com
+          password: abcd1234
+  responses:
+    200:
+      description: Success Login.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - message
+              - token
+              - role
+              - isMerchantExist
+            properties:
+              message:
+                type: string
+                example: Login successful
+              token:
+                type: string
+                example: 2|8wP3pQoArU5rMMBlWqbonW2fNRinhbMrXj2GUMU7373fb8c9
+              role:
+                type: string
+                example: cashier
+              isMerchantExist:
+                type: boolean
+                example: true
+    401:
+      description: Wrong Password
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: invalid, wrong email or password
+    404:
+      description: User Not Registered
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: email not found

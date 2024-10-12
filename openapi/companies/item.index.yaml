@@ -1,0 +1,99 @@
+put:
+  security:
+    - bearerAuth: [bearer]
+  operationId: update-company
+  tags:
+    - Company
+  summary: Update Company
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: ulid
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          required:
+            - name
+            - data
+            - longitude
+            - latitude
+          properties:
+            name:
+              type: string
+            data:
+              type: object
+              required:
+                - tittle
+                - slogan
+                - description
+                - photo
+              properties:
+                tittle:
+                  type: string
+                slogan:
+                  type: string
+                description:
+                  type: string
+                photo:
+                  type: string
+                  format: binary
+            longitude:
+              type: number
+            latitude:
+              type: number
+        examples:
+          example-1:
+            value:
+              name: "Company Name"
+              data:
+                tittle: "Kliniks"
+                slogan: "Oke Oce"
+                description: "Description"
+                photo: Binary data
+              longitude: 104.090909
+              latitude: -9.2983921
+
+          
+  responses:
+    200:
+      description: Successful Created.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - message
+            properties:
+              message:
+                type: string
+                example: Company Created Successfully.
+    401:
+      description: Wrong Password
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: Invalid.
+    404:
+      description: User Not Registered
+      content:
+        application/json:
+          schema: 
+            type: object
+            required: 
+              -  message
+            properties:
+              message:
+                type: string
+                example: not found
